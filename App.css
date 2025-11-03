@@ -1,0 +1,64 @@
+/* Reset default margins/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body global background: soft pastel gradient */
+body {
+  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FFE5EC, #01ed4c, #FFF8DC); /* light pastel gradient */
+  color: #333;
+}
+
+/* Container styling: keep white for forms/cards */
+.MuiContainer-root, .MuiCard-root {
+  background-color: #ffffff; /* pure white */
+  border-radius: 16px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.08); /* subtle shadow */
+}
+
+/* Card hover effect */
+.MuiCard-root:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Headings */
+h4, h5 {
+  font-weight: 600;
+  color: #555;
+}
+
+/* Buttons */
+button {
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Inputs and textareas */
+input, textarea, .MuiSelect-select {
+  border-radius: 8px;
+}
+
+/* Snackbar customization */
+.MuiAlert-root {
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* Responsive grid spacing */
+@media (max-width: 600px) {
+  .MuiGrid-item {
+    margin-bottom: 16px;
+  }
+}
