@@ -81,9 +81,17 @@ export default function AppointmentForm({ addAppointment }) {
   };
 
   return (
-    <Card sx={{ backgroundColor: "#ffffffff", p: 3, mb: 3, boxShadow: 4 }}>
+    <Card sx={{
+      p: 3,
+      mb: 3,
+      borderRadius: 3,
+      background: "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)",
+      boxShadow: 5,
+      transition: "transform 0.3s",
+      "&:hover": { transform: "scale(1.02)" }
+    }}>
       <CardContent>
-        <Typography variant="h5" sx={{ mb: 2 }}>
+        <Typography variant="h5" sx={{ mb: 2, color: "#1b1b1b" }}>
           Book Appointment
         </Typography>
         <form onSubmit={handleSubmit}>
@@ -97,6 +105,7 @@ export default function AppointmentForm({ addAppointment }) {
                 required
                 error={!!errors.patientName}
                 helperText={errors.patientName}
+                sx={{ "& .MuiOutlinedInput-root:hover": { borderColor: "#8ecae6" }, }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -123,13 +132,8 @@ export default function AppointmentForm({ addAppointment }) {
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth required error={!!errors.doctor}>
                 <InputLabel>Doctor</InputLabel>
-                <Select
-                  value={form.doctor}
-                  onChange={(e) => handleChange("doctor", e.target.value)}
-                >
-                  {doctors.map((doc) => (
-                    <MenuItem key={doc} value={doc}>{doc}</MenuItem>
-                  ))}
+                <Select value={form.doctor} onChange={(e) => handleChange("doctor", e.target.value)}>
+                  {doctors.map((doc) => <MenuItem key={doc} value={doc}>{doc}</MenuItem>)}
                 </Select>
                 <FormHelperText>{errors.doctor}</FormHelperText>
               </FormControl>
@@ -137,13 +141,8 @@ export default function AppointmentForm({ addAppointment }) {
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth required error={!!errors.department}>
                 <InputLabel>Department</InputLabel>
-                <Select
-                  value={form.department}
-                  onChange={(e) => handleChange("department", e.target.value)}
-                >
-                  {departments.map((dept) => (
-                    <MenuItem key={dept} value={dept}>{dept}</MenuItem>
-                  ))}
+                <Select value={form.department} onChange={(e) => handleChange("department", e.target.value)}>
+                  {departments.map((dept) => <MenuItem key={dept} value={dept}>{dept}</MenuItem>)}
                 </Select>
                 <FormHelperText>{errors.department}</FormHelperText>
               </FormControl>
@@ -166,11 +165,7 @@ export default function AppointmentForm({ addAppointment }) {
             </Grid>
             <Grid item xs={12}>
               <Typography sx={{ mb: 1 }}>Visit Type</Typography>
-              <RadioGroup
-                row
-                value={form.visitType}
-                onChange={(e) => handleChange("visitType", e.target.value)}
-              >
+              <RadioGroup row value={form.visitType} onChange={(e) => handleChange("visitType", e.target.value)}>
                 <FormControlLabel value="New" control={<Radio />} label="New" />
                 <FormControlLabel value="Follow-up" control={<Radio />} label="Follow-up" />
               </RadioGroup>
@@ -189,12 +184,7 @@ export default function AppointmentForm({ addAppointment }) {
             <Grid item xs={12}>
               <FormControl required error={!!errors.consent}>
                 <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={form.consent}
-                      onChange={(e) => handleChange("consent", e.target.checked)}
-                    />
-                  }
+                  control={<Checkbox checked={form.consent} onChange={(e) => handleChange("consent", e.target.checked)} />}
                   label="I agree to clinic policies"
                 />
                 <FormHelperText>{errors.consent}</FormHelperText>
@@ -204,14 +194,22 @@ export default function AppointmentForm({ addAppointment }) {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ bgcolor: "primary.main", "&:hover": { bgcolor: "primary.dark" } }}
+                sx={{ 
+                  bgcolor: "primary.main", 
+                  "&:hover": { bgcolor: "primary.dark", transform: "scale(1.05)" },
+                  transition: "all 0.3s ease"
+                }}
               >
                 Submit
               </Button>
               <Button
                 type="button"
                 variant="outlined"
-                sx={{ color: "secondary.main", borderColor: "secondary.main" }}
+                sx={{ 
+                  color: "secondary.main", 
+                  borderColor: "secondary.main", 
+                  "&:hover": { bgcolor: "secondary.light", borderColor: "secondary.dark" } 
+                }}
                 onClick={handleReset}
               >
                 Reset
